@@ -1,6 +1,7 @@
-from behave import *
-from selenium import webdriver
-import time
+from behave import when, then
+from selenium.webdriver.common.by import By
+
+from features.helpers import wait_visible
 
 
 @when('I click log in button')
@@ -21,20 +22,19 @@ def click_confirm_log_in(context):
 
 @then('baseline survey shows up')
 def baseline_survey_is_displayed(context):
-    try:
-        text = context.driver.find_element_by_xpath("//h2[contains(text(),'Eligibility')]").text
-    except:
-        context.driver.close()
-        assert False, "Baseline survey not showing up"
-    if text == "Eligibility":
-        assert True, "User reached the baseline survey"
+    heading = wait_visible(context, By.XPATH, "//h2[contains(text(),'Eligibility')]",
+                           "Baseline survey not showing up")
+    assert heading.text.strip() == "Eligibility", \
+        "Expected 'Eligibility' heading, got '%s'" % heading.text
 
 
 @then('please enter a valid mail pop up shows up')
 def invalid_mail_message(context):
-    context.driver.find_element_by_css_selector('#error-message').is_displayed()
+    wait_visible(context, By.CSS_SELECTOR, '#error-message',
+                 "'Please enter a valid email' message is not displayed")
 
 
 @then('wrong email or password shows up')
 def invalid_password_message(context):
-    context.driver.find_element_by_css_selector('#error-message').is_displayed()
+    wait_visible(context, By.CSS_SELECTOR, '#error-message',
+                 "'Wrong email or password' message is not displayed")

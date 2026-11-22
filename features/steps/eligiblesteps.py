@@ -1,6 +1,6 @@
-from behave import *
-from selenium import webdriver
-import time
+from behave import given, when, then
+from selenium.webdriver.common.by import By
+from features.helpers import wait_visible
 
 
 @given('I go to start page')
@@ -30,22 +30,20 @@ def select_no_in_an_answer(context):
 @then('I select next')
 def click_next_button(context):
     context.driver.find_element_by_css_selector("div.form-group button").click()
-    time.sleep(2)
 
 
 @then('verify user not eligible text shows up')
 def verify_user_not_eligible_text(context):
-    context.driver.find_element_by_css_selector('#general-not-eligible').is_displayed()
+    wait_visible(context, By.CSS_SELECTOR, '#general-not-eligible',
+                 "'Not eligible' message is not displayed")
 
 
 @then('verify consent to participate shows up')
 def verify_consent_shows_up(context):
-    context.driver.find_element_by_css_selector('h2[class="page-title uppercase"').is_displayed()
+    wait_visible(context, By.CSS_SELECTOR, 'h2[class="page-title uppercase"]',
+                 "Consent to participate page is not displayed")
 
 
 @then('close browser')
 def close_browser(context):
     context.driver.close()
-
-
-
