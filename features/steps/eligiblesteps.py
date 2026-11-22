@@ -5,7 +5,7 @@ import time
 
 @given('I go to start page')
 def open_start_page(context):
-    context.driver.get('https://registry.qa.covid.gcp.rexdb.us/')
+    context.driver.get(context.base_url + '/')
 
 
 @when('I click on start button')
