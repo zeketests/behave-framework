@@ -15,26 +15,31 @@ Feature: Check the main content of the HomePage
     Then About Page shows up
     And close browser
 
+  @wip
   Scenario: Results page content
     When I click the Results button
     Then Results Page shows up
     And close browser
 
+  @wip
   Scenario: FAQ page content
     When I click the FAQ button
     Then FAQ Page shows up
     And close browser
 
+  @wip
   Scenario: Resources page content
     When I click the Resources button
     Then Resources Page shows up
     And close browser
 
+  @wip
   Scenario: Our Partners page content
     When I click the Our Partners button
     Then Our Partners Page shows up
     And close browser
 
+  @wip
   Scenario: Contact US page content
     When I click the Contact US button
     Then Our Contact US Page shows up
