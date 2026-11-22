@@ -34,6 +34,14 @@ pip install -r requirements.txt
 ```bash
 pip install behave-webdriver
 ```
+## Configuration
+Settings live in `behave.ini` under `[behave.userdata]` (browser, headless, base_url, implicit_wait, browser_binary).
+Override any of them from the command line:
+```bash
+behave -D browser=chrome -D headless=true
+```
+The browser is always closed after each scenario, and a screenshot is attached to the Allure report when a step fails.
+
 ## Allure Behave
 ### Allure instalation:
 ```bash
